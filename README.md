@@ -1,9 +1,9 @@
 # Mailer
-UtilityForHandlingMails
+Utility For Handling Mails
 
 # Example
 
-from mailer import mailer
+from mailer import Mailer
 
 my_mailer = Mailer('smtp.gmail.com', '587', 'testrabindrasapkota@gmail.com', 'test@1234567890')
 
