@@ -1,7 +1,7 @@
 # Mailer
 UtilityForHandlingMails
 
-Example
+# Example
 
 from mailer import mailer
 
