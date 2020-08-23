@@ -15,6 +15,7 @@ How are you? I Hope you are fine.
 With Regards,
 {SENDER}
 '''
+
 body_args = {'RECEIVER': 'RabindraR', 'SENDER': 'RabindraS'}
 
 attachment = ['C:/Users/rabindra/Desktop/image.jpg', 'C:/Users/rabindra/Desktop/SnapShotTestOnCluster.pdf']
