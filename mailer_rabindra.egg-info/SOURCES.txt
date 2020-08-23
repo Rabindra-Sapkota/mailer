@@ -1,6 +1,0 @@
-README.md
-setup.py
-mailer_rabindra.egg-info/PKG-INFO
-mailer_rabindra.egg-info/SOURCES.txt
-mailer_rabindra.egg-info/dependency_links.txt
-mailer_rabindra.egg-info/top_level.txt
