@@ -5,7 +5,8 @@ It can be send simple plain mail, send mail accroding to body template, mail wit
 
 We can include cc and bcc email addresses to the mail
 
-Can be installed fro pypi with pip install mailerpy
+# Installation
+pip install mailerpy
 
 # Example
 
