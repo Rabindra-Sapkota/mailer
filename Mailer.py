@@ -14,10 +14,17 @@ class Mailer:
         self.msg['From'] = self.mail_address
         self.msg['To'] = to_address
         self.msg['Subject'] = subject
-        self.msg.attach(MIMEText(body, 'plain'))
-        self.__compose_mail(to_address, subject, body)
+
+        if body_args is None:
+            self.msg.attach(MIMEText(body, 'plain'))
+        else:
+            self.__compose_body(body, body_args)
         self.__deliver_mail(to_address)
         pass
+
+    def __compose_body(self,body, body_args):
+        # Template key should be on dictionary key so handle exception here
+        self.msg.attach(MIMEText(body.format(**body_args), 'plain'))
 
     def __compose_mail(self, to, subject, body):
         pass
@@ -34,4 +41,13 @@ class Mailer:
         pass
 
 my_mailer = Mailer('smtp.gmail.com','587','testrabindrasapkota@gmail.com','test@1234567890')
-my_mailer.send_mail('rabindrasapkota2@gmail.com','Test Mail','Hello there')
+body = '''
+Dear {RECEIVER},
+
+How are you? I Hope you are fine.
+
+With Regards,
+{SENDER}
+'''
+body_args = {'RECEIVER':'RabindraR','SENDER':'RabindraS'}
+my_mailer.send_mail('rabindrasapkota2@gmail.com','Test Template', body, body_args=body_args)
