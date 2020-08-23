@@ -7,7 +7,7 @@ We can include cc and bcc email addresses to the mail
 
 # Example
 
-from mailer import Mailer
+from mailerpy import Mailer
 
 my_mailer = Mailer('smtp.gmail.com', '587', 'testrabindrasapkota@gmail.com', 'test@1234567890')
 
