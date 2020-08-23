@@ -1,6 +1,10 @@
 # Mailer
 Utility For Handling Mails
 
+It can be send simple plain mail, send mail accroding to body template, mail with attachments.
+
+We can include cc and bcc email addresses to the mail
+
 # Example
 
 from mailer import Mailer
