@@ -55,6 +55,7 @@ class Mailer:
                               mail_bcc=mail_bcc, attachments=attachments)
 
         # Compose message for mailing with given arguments
+        self.msg = MIMEMultipart()
         self.msg['Message-Id'] = make_msgid()
         self.msg['Date'] = formatdate(localtime=True)
         self.msg['From'] = self.mail_address
