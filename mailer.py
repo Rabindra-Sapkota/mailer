@@ -62,7 +62,7 @@ class Mailer:
         self.msg['To'] = ', '.join(to_address)
         self.msg['cc'] = ', '.join(mail_cc)
         self.msg['Subject'] = subject
-        self.__compose_body(mail_body=mail_body, mail_body_args=mail_body_args)
+        self.__compose_body(mail_body=mail_body, mail_body_args=mail_body_args, file_as_html=file_as_html)
         self.__attach_files(attachments)
         self.__deliver_mail(receiver_address=to_address + mail_cc + mail_bcc)
         return
@@ -97,7 +97,7 @@ class Mailer:
         if attachments is not None and not isinstance(attachments, list):
             raise TypeError('attachments should be as type list of attachment file')
 
-    def __compose_body(self, mail_body, mail_body_args):
+    def __compose_body(self, mail_body, mail_body_args, file_as_html):
         """
         Compose body of mail by replacing parameters with actual values
 
@@ -107,15 +107,23 @@ class Mailer:
         :type mail_body_args: dict
         :return: Attach body to be sent on mail
         """
-        if mail_body_args is None:
-            self.msg.attach(MIMEText(mail_body, 'plain'))
-            return
+        if not file_as_html:
+            if mail_body_args is None:
+                self.msg.attach(MIMEText(mail_body, 'plain'))
+                return
 
-        try:
-            self.msg.attach(MIMEText(mail_body.format(**mail_body_args), 'plain'))
-        except KeyError as e:
-            raise ValueError('Parameter of mail_body not found in mail_body_args')
-
+            try:
+                self.msg.attach(MIMEText(mail_body.format(**mail_body_args), 'plain'))
+            except KeyError as e:
+                raise ValueError('Parameter of mail_body not found in mail_body_args')
+        else:
+            if mail_body_args is None:
+                self.msg.attach(MIMEText(mail_body, 'html'))
+                return
+            try:
+                self.msg.attach(MIMEText(mail_body.format(**mail_body_args), 'html'))
+            except KeyError as e:
+                raise ValueError('Parameter of mail_body not found in mail_body_args')
         return
 
     def __attach_files(self, attachments):
